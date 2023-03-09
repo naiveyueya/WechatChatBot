@@ -9,14 +9,20 @@ from wxauto import *
 
 
 #%%
-def Monitor_Mesaage(to=False, monitorone=False):
+def Monitor_Mesaage(to=False):
+    '''
+    Monitor message
+    :param to: the one who u want to spy
+    :return:
+    '''
     wx, ind = WeChat(), 1
     if to:
         wx.Search(keyword=to)
     else:
         wx.GetSessionList()
     msg = wx.GetLastMessage
-    if monitorone:
-        if msg[0] == monitorone:
+    try:
+        if msg[0] == to:
             return msg
-    return msg
+    except:
+        return msg
